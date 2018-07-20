@@ -1,5 +1,7 @@
 package com.dsa.linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -72,6 +74,22 @@ public class SinglyLinkedList {
 	}
 	
 
+	
+	void removeDuplicate() {
+		if (head == null) {
+			return;
+		}
+		System.out.println("Removing Duplicates");
+		Set<Integer> s = new HashSet<>();
+		Node node = head;
+		while (node != null) {
+			if (!s.add(node.value)) {
+				deleteAtMiddle(node.value);
+			}
+			node = node.next;
+		}
+	}
+	
 	void traversal() {
 		System.out.println("Travesing Node");
 		Node node = head;
@@ -90,6 +108,9 @@ public class SinglyLinkedList {
 		sLinkedlist.head.next= new Node(2);
 		sLinkedlist.head.next.next = new Node(3);
 		sLinkedlist.head.next.next.next = new Node(4);
+		sLinkedlist.head.next.next.next.next = new Node(4);
+		sLinkedlist.head.next.next.next.next.next = new Node(2);
+
 		sLinkedlist.traversal();
 		
 		Node newNode = new Node(5);
@@ -102,6 +123,9 @@ public class SinglyLinkedList {
 
 		
 		sLinkedlist.deleteAtMiddle(3);
+		sLinkedlist.traversal();
+		
+		sLinkedlist.removeDuplicate();
 		sLinkedlist.traversal();
 		
 		
